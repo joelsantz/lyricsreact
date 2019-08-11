@@ -29,11 +29,13 @@ function App() {
 
   // Metodo para consultar la API de informacion 
   const consultInfoAPI = async () => {
-    const url = `https://theaudiodb.com/api/v1/json/1/search.php?s=${artist}`;
-    const result = await axios(url);
+    if(artist) {
+      const url = `https://theaudiodb.com/api/v1/json/1/search.php?s=${artist}`;
+      const result = await axios(url);
 
     setInfo(result.data.artists[0]);
     // console.log(info);
+    }
   }
 
   useEffect(
@@ -53,7 +55,9 @@ function App() {
       <div className="container mt-5">
         <div className = "row">
           <div className = "col-md-6">
-
+              <Info
+                info = {info}
+              />
           </div>
           <div className = "col-md-6">
               <Song
